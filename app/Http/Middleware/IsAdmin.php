@@ -13,7 +13,6 @@ class IsAdmin
     {
         if ($request->user() && $request->user()->permission !== 'admin'){
             return redirect('/')->with('error', 'Tu es pas admin OUSTE !!!! Imposteur !!!'); // If user is not an admin.
-
         }else{
             return $next($request);
         }
