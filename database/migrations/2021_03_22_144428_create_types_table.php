@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlatsTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatePlatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plats', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string("name");
+            $table->timestamps();
             $table->softDeletes();
         });
     }
@@ -27,6 +28,6 @@ class CreatePlatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plats');
+        Schema::dropIfExists('types');
     }
 }

@@ -21,8 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => 'is.admin'], function () {
+
+});
 
 require __DIR__.'/auth.php';
