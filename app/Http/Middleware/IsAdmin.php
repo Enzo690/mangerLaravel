@@ -12,7 +12,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if ($request->user() && $request->user()->permission !== 'admin'){
-            return redirect('/')->with('error', 'Tu es pas admin OUSTE !!!! Imposteur !!!'); // If user is not an admin.
+            return redirect('/')->withErrors(["Tu n'es pas admin OUSTE !!"]); // If user is not an admin.
         }else{
             return $next($request);
         }

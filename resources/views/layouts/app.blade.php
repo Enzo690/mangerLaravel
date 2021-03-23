@@ -26,7 +26,7 @@
                     {{ $header }}
                 </div>
             </header>
-
+                <x-error/>
             <!-- Page Content -->
             <main>
                 {{ $slot }}
