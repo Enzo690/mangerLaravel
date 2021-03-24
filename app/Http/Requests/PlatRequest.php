@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PlatRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class PlatRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -25,6 +26,10 @@ class PlatRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
+            'weight' => ['int'],
+            'category_id' =>  ['int'],
+            'origin_id' => ['int'],
+            'type_id' => ['int'],
         ];
     }
 }

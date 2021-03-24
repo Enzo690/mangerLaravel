@@ -21,7 +21,7 @@ class PostRepository
     public function forceDestroy(object $obj,$id, string $text = "")
     {
         $obj::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
-        return back()->with('info', $text.'a bien été supprimé définitivement dans la base de données.');
+        return back()->with('info', $text.' a bien été supprimé définitivement dans la base de données.');
     }
 
     public function restore(object $obj, $id, string $text = "")

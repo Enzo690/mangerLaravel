@@ -15,4 +15,9 @@ class Ingredient extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function plats()
+    {
+        return $this->morphToMany(Plat::class, 'ingredable');
+    }
 }

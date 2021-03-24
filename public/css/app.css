@@ -235,6 +235,13 @@ See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d4
   box-shadow: none;
 }
 
+.panelElements{
+    width : 95%;
+
+}
+.maxWidth{
+    width: 100%;
+}
 .bg-danger{
   background-color: #ffdddd;
 }
@@ -246,7 +253,11 @@ See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d4
 .bg-success{
       background-color: #bdffbd;
 }
-
+.adminCreate{
+    padding-top:0 !important;
+    justify-content : space-between;
+    display:flex;
+}
 .panelElement{
     padding-top:0 !important;
     justify-content : space-around;

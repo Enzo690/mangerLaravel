@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\OriginController;
+use App\Http\Controllers\PlatController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::post('admin/dashboard/ingredientStore', [IngredientController::class, 'store'])->name('ingredient.store');
     Route::post('admin/dashboard/originStore', [OriginController::class, 'store'])->name('origin.store');
     Route::post('admin/dashboard/typeStore', [TypeController::class, 'store'])->name('type.store');
+    Route::post('admin/dashboard/platStore', [PlatController::class, 'store'])->name('plat.store');
 
     Route::delete('admin/dashboard/forceDestroyCategory/{id}', [CategoryController::class, 'forceDestroy'])->name('category.force.destroy');
     Route::delete('admin/dashboard/destroyCategory/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');

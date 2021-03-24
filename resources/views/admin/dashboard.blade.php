@@ -56,29 +56,68 @@
             <br>
             <br>
 
-            <form id="plat">
-                <x-label>Nouveau plat</x-label>
-                <x-input type="text" name="name"/>
+            <form  id="abatardTuFumes" action="{{ route('plat.store') }}" method="POST">
+                @csrf
+                <div class="maxWidth">
+                        <h3>Nouveau plat</h3>
+                        <br>
+                        <x-label>Nom</x-label>
+                        <x-input class="maxWidth" type="text" name="name"/>
+                        <br><br>
+                        <x-label>Poids</x-label>
+                        <x-input  class="maxWidth" type="number" name="weight"/>
+                        <br><br>
+                        <x-label>Price</x-label>
+                        <x-input  class="maxWidth" type="number" name="price"/>
+                    </div>
+
+
+            <br/><br/>
+
+                <div class="adminCreate">
+                    @include('components/select',['datas' => $data['category'], 'label' => 'Catégorie','name' => 'category_id'])
+
+
+
+                    @include('components/select',['datas' => $data['type'], 'label' => 'Type','name' => 'type_id'])
+
+
+                </div>
+                <br>
+                <div class="adminCreate">
+                    @include('components/select',['datas' => $data['origin'], 'label' => 'Origin','name' => 'origin_id'])
+
+
+                    <div>
+                        <x-label>Ingrédients</x-label>
+                        <select name="ingre[]" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="ingredient_id" >
+                            @foreach($data['ingredient'] as $ingredient)
+                                <option  value="{{ $ingredient->id }}" {{ in_array($ingredient->id, old('cats') ?: []) ? 'selected' : '' }} >{{ $ingredient->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    </div>
+                    <x-button name="btn-9" type="submit">Créer</x-button>
+
             </form>
         </div>
-        <div class="max-w-6xl sm:px-6 lg:px-6">
 
-            <div class="py-12 panelElement">
+            <div class="max-w-6xl sm:px-6 lg:px-6">
 
-        @include('components/admintable',['datas' => $data['category'], 'object' => 'category'])
-        @include('components/admintable',['datas' => $data['type'], 'object' => 'type'])
+                <div class="py-12 panelElement">
+
+            @include('components/admintable',['datas' => $data['category'], 'object' => 'category'])
+            @include('components/admintable',['datas' => $data['type'], 'object' => 'type'])
+                </div>
+
+                <div class="py-12 panelElement">
+
+            @include('components/admintable',['datas' => $data['ingredient'], 'object' => 'ingredient'])
+
+            @include('components/admintable',['datas' => $data['origin'], 'object' => 'origin'])
+                </div>
+
             </div>
-
-            <div class="py-12 panelElement">
-
-        @include('components/admintable',['datas' => $data['ingredient'], 'object' => 'ingredient'])
-
-        @include('components/admintable',['datas' => $data['origin'], 'object' => 'origin'])
-            </div>
-
-        </div>
-
-
 
     </div>
 

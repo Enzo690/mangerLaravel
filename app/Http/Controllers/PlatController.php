@@ -37,7 +37,7 @@ class PlatController extends Controller
     public function store(PlatRequest $platRequest)
     {
         $film = Plat::create($platRequest->all());
-        $film->ingredients()->attach($platRequest->cats);
+        $film->ingredients()->attach($platRequest->ingre);
         return redirect()->route('admin.dashboard')->with('info', 'Le plat a bien été créé');
     }
 

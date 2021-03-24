@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientPlatTable extends Migration
+class CreateIngredablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateIngredientPlatTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredient_plat', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ingredables', function (Blueprint $table) {
+            $table->id('ingredable_id');
             $table->timestamps();
             $table->unsignedBigInteger('ingredient_id');
             $table->foreign('ingredient_id')
                 ->references('id')
                 ->on('ingredients');
+            $table->string('ingredable_type');
             $table->unsignedBigInteger('plat_id');
             $table->foreign('plat_id')
                 ->references('id')

@@ -13,5 +13,18 @@ class Plat extends Model
 
     protected $fillable = [
         'name',
+        'weight',
+        'price',
+        'category_id',
+        'origin_id',
+        'type_id'
     ];
+
+    public $timestamps = false;
+
+    public function ingredients()
+    {
+        return $this->morphedByMany(Ingredient::class, 'ingredable');
+    }
+
 }
