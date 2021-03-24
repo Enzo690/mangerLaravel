@@ -239,7 +239,16 @@ See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d4
   background-color: #ffdddd;
 }
 
+.bg-info{
+  background-color: #ddddff;
+}
+
+.bg-success{
+      background-color: #bdffbd;
+}
+
 .panelElement{
+    padding-top:0 !important;
     justify-content : space-around;
     display:flex;
 }
@@ -10968,6 +10977,8 @@ select {
 .box-content {
   box-sizing: content-box;
 }
+
+
 
 .cursor-auto {
   cursor: auto;

@@ -26,7 +26,7 @@
                 <x-input type="text" name="name"/>
                 <x-button name="btn-1" type="submit">Créer</x-button>
                 </form>
-        <br>
+            <br>
             <form id="ingredient" action="{{ route('ingredient.store') }}" method="POST">
 
                 @csrf
@@ -35,7 +35,7 @@
                 <x-input type="text" name="name"/>
                 <x-button name="btn-2" type="submit">Créer</x-button>
                 </form>
-        <br>
+            <br>
             <form id="origin" action="{{ route('origin.store') }}" method="POST">
 
                 @csrf
@@ -44,7 +44,7 @@
                 <x-input type="text" name="name"/>
                 <x-button name="btn-3" type="submit">Créer</x-button>
             </form>
-        <br>
+            <br>
             <form id="type" action="{{ route('type.store') }}" method="POST">
 
                 @csrf
@@ -53,47 +53,33 @@
                 <x-input type="text" name="name"/>
                 <x-button name="btn-4" type="submit">Créer</x-button>
             </form>
+            <br>
+            <br>
+
+            <form id="plat">
+                <x-label>Nouveau plat</x-label>
+                <x-input type="text" name="name"/>
+            </form>
         </div>
-
-
         <div class="max-w-6xl sm:px-6 lg:px-6">
-            <table class="table is-hoverable">
-                <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($data['category'] as $category)
-                    <tr @if($category->deleted_at) class="has-background-grey-lighter" @endif>
-                        <td><strong>{{ $category->name }}</strong></td>
-                        <td>
-                            @if($category->deleted_at)
-                                <form action="{{ route('category.restore', $category->id) }}" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="button is-primary" type="submit">Restaurer</button>
-                                </form>
-                            @endif
-                        </td>
-                        <td>
-                            <form action="{{ route($category->deleted_at? 'category.force.destroy' : 'category.destroy', $category->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="button is-danger" type="submit">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            {{ $data['category']->links() }}
+
+            <div class="py-12 panelElement">
+
+        @include('components/admintable',['datas' => $data['category'], 'object' => 'category'])
+        @include('components/admintable',['datas' => $data['type'], 'object' => 'type'])
+            </div>
+
+            <div class="py-12 panelElement">
+
+        @include('components/admintable',['datas' => $data['ingredient'], 'object' => 'ingredient'])
+
+        @include('components/admintable',['datas' => $data['origin'], 'object' => 'origin'])
+            </div>
+
         </div>
 
-      </div>
+
+
     </div>
 
 </x-app-layout>

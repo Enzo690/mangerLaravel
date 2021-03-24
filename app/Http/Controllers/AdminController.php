@@ -16,10 +16,10 @@ class AdminController extends Controller
     public function index()
     {
         $model = null;
-        $category = Category::query()->withTrashed()->oldest('name')->paginate(8);
-        $origin = Origin::query()->withTrashed()->oldest('name')->paginate(8);
-        $type =  Type::query()->withTrashed()->oldest('name')->paginate(8);
-        $ingredient = Ingredient::query()->withTrashed()->oldest('name')->paginate(8);
+        $category = Category::query()->withTrashed()->oldest('name')->paginate(5);
+        $origin = Origin::query()->withTrashed()->oldest('name')->paginate(5);
+        $type =  Type::query()->withTrashed()->oldest('name')->paginate(5);
+        $ingredient = Ingredient::query()->withTrashed()->oldest('name')->paginate(5);
 
         $data =
         [
@@ -31,6 +31,7 @@ class AdminController extends Controller
 
         return view('admin/dashboard', compact('data'));
     }
+
 
     /**
      * Display the specified resource.

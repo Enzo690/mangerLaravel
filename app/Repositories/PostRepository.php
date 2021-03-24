@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostRepository
 {
@@ -8,7 +9,7 @@ class PostRepository
     public function store(object $obj, string $text = "", object $request = null)
     {
         $type = $obj::create($request->all());
-        return redirect()->route('admin.dashboard')->with('info',  $text ."a bien été créé");
+        return redirect()->route('admin.dashboard')->with('success',  $text ." a bien été créé");
     }
 
     public function destroy(object $obj, string $text = "" )

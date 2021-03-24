@@ -1,4 +1,6 @@
-<div class="max-w-2xl sm:px-2 lg:px-2">
+
+<div class="max-w-6xl sm:px-6 lg:px-6">
+    {{$object}}
     <table class="table is-hoverable">
         <thead>
         <tr>

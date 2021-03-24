@@ -30,8 +30,22 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::post('admin/dashboard/originStore', [OriginController::class, 'store'])->name('origin.store');
     Route::post('admin/dashboard/typeStore', [TypeController::class, 'store'])->name('type.store');
 
-    Route::get('admin/dashboard/deleteCategory', [AdminController::class, 'destroyCat'])->name('category.destroy');
-    Route::get('admin/dashboard/destroyCategory', [AdminController::class, 'forceDestroyCat'])->name('category.forceDestroy');
+    Route::delete('admin/dashboard/forceDestroyCategory/{id}', [CategoryController::class, 'forceDestroy'])->name('category.force.destroy');
+    Route::delete('admin/dashboard/destroyCategory/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::put('category/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+
+    Route::delete('admin/dashboard/forceDestroyType/{id}', [TypeController::class, 'forceDestroy'])->name('type.force.destroy');
+    Route::delete('admin/dashboard/destroyType/{type}', [TypeController::class, 'destroy'])->name('type.destroy');
+    Route::put('type/restore/{id}', [TypeController::class, 'restore'])->name('type.restore');
+
+    Route::delete('admin/dashboard/forceDestroyIngredient/{id}', [IngredientController::class, 'forceDestroy'])->name('ingredient.force.destroy');
+    Route::delete('admin/dashboard/destroyIngredient/{ingredient}', [IngredientController::class, 'destroy'])->name('ingredient.destroy');
+    Route::put('ingredient/restore/{id}', [IngredientController::class, 'restore'])->name('ingredient.restore');
+
+    Route::delete('admin/dashboard/forceDestroyOrigin/{id}', [OriginController::class, 'forceDestroy'])->name('origin.force.destroy');
+    Route::delete('admin/dashboard/destroyOrigin/{origin}', [OriginController::class, 'destroy'])->name('origin.destroy');
+    Route::put('origin/restore/{id}', [OriginController::class, 'restore'])->name('origin.restore');
+
 
 
 });

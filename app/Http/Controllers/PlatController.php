@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlatRequest;
 use App\Models\Plat;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,11 @@ class PlatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlatRequest $platRequest)
     {
-        //
+        $film = Plat::create($platRequest->all());
+        $film->ingredients()->attach($platRequest->cats);
+        return redirect()->route('admin.dashboard')->with('info', 'Le plat a bien été créé');
     }
 
     /**

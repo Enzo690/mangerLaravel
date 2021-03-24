@@ -4,32 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
 use App\Models\Category;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function store(AdminRequest $adminRequest)
+
+
+    protected $postRepository;
+
+    public function __construct(PostRepository $postRepository)
     {
-        $category = Category::create($adminRequest->all());
-        return redirect()->route('admin.dashboard')->with('info', 'La catégorie a bien été créé');
+        $this->postRepository = $postRepository;
     }
 
-    public function destroyCat(Category $category)
+    public function store(AdminRequest $adminRequest,Category $category)
     {
-        $category->delete();
-        return back()->with('info', 'Le film a bien été mis dans la corbeille.');
+        return $this->postRepository->store($category,"La catégorie",$adminRequest);
     }
 
-    public function forceDestroyCat($id)
+    public function destroy(Category $category)
     {
-        Category::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
-        return back()->with('info', 'Le film a bien été supprimé définitivement dans la base de données.');
+        return $this->postRepository->destroy($category,"La catégorie");
     }
 
-    public function restore($id)
+    public function forceDestroy($id, Category $category)
     {
-        Category::withTrashed()->whereId($id)->firstOrFail()->restore();
-        return back()->with('info', 'Le contact a bien été restauré.');
+        return $this->postRepository->forceDestroy($category, $id, "La catégorie");
+    }
+
+    public function restore($id, Category $category)
+    {
+        return $this->postRepository->restore($category,$id,"La catégorie");
     }
 
 }
