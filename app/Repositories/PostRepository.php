@@ -1,10 +1,16 @@
 <?php
 namespace App\Repositories;
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Plat;
+use Illuminate\Support\Facades\DB;
 
 class PostRepository
 {
+
+    protected function queryActive()
+    {
+        return Plat::select('id')
+            ->with('name');
+    }
 
     public function store(object $obj, string $text = "", object $request = null)
     {
@@ -28,6 +34,14 @@ class PostRepository
     {
         $obj::withTrashed()->whereId($id)->firstOrFail()->restore();
         return back()->with('info',  $text.' a bien été restauré.');
+    }
+
+    public function getFoodByIngredient(int $nbrPages, $id, string $method)
+    {
+        return $this->queryActive()->whereHas($method, function($query) use ($id,$method){
+            $query->where('ingredients.id', '=',$id->ingredient_id);
+
+        })->paginate($nbrPages);
     }
 
 }

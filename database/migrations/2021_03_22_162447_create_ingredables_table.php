@@ -14,17 +14,15 @@ class CreateIngredablesTable extends Migration
     public function up()
     {
         Schema::create('ingredables', function (Blueprint $table) {
-            $table->id('ingredable_id');
+            $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('ingredient_id');
-            $table->foreign('ingredient_id')
-                ->references('id')
-                ->on('ingredients');
-            $table->string('ingredable_type');
             $table->unsignedBigInteger('plat_id');
             $table->foreign('plat_id')
                 ->references('id')
-                ->on('plats');
+                ->on('plats')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->morphs('ingredable');
         });
     }
 

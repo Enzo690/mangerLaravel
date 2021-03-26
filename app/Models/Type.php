@@ -12,6 +12,12 @@ class Type extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'id',
         'name',
     ];
+
+    public function plat()
+    {
+        return $this->hasMany(Plat::class);
+    }
 }

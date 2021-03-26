@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\OriginController;
 use App\Http\Controllers\PlatController;
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/', [ClientController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
@@ -48,7 +47,11 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::delete('admin/dashboard/destroyOrigin/{origin}', [OriginController::class, 'destroy'])->name('origin.destroy');
     Route::put('origin/restore/{id}', [OriginController::class, 'restore'])->name('origin.restore');
 
+    Route::delete('admin/dashboard/forceDestroyPlat/{id}', [PlatController::class, 'forceDestroy'])->name('plat.force.destroy');
+    Route::delete('admin/dashboard/destroyPlat/{plat}', [PlatController::class, 'destroy'])->name('plat.destroy');
+    Route::put('plat/restore/{id}', [PlatController::class, 'restore'])->name('plat.restore');
 
+    Route::post('/ingredient', [ClientController::class, 'getFoodByIngredient'])->name('search.ingredients');
 
 });
 

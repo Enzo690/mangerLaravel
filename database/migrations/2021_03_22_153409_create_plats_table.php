@@ -33,6 +33,7 @@ class CreatePlatsTable extends Migration
             $table->foreign('type_id')
                 ->references('id')
                 ->on('types');
+            $table->softDeletes();
         });
     }
 

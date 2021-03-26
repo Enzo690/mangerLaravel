@@ -14,4 +14,9 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function plat()
+    {
+        return $this->hasMany(Plat::class);
+    }
 }
