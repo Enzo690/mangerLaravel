@@ -51,7 +51,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::delete('admin/dashboard/destroyPlat/{plat}', [PlatController::class, 'destroy'])->name('plat.destroy');
     Route::put('plat/restore/{id}', [PlatController::class, 'restore'])->name('plat.restore');
 
-    Route::post('/ingredient', [ClientController::class, 'getFoodByIngredient'])->name('search.ingredients');
+    Route::post('/', [ClientController::class, 'index'])->name('search.ingredients');
 
 });
 

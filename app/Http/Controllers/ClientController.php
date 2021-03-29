@@ -21,32 +21,15 @@ class ClientController extends Controller
         return $this->postRepository = $postRepository;
     }
 
-    public function index()
+    public function index(Request $request, Plat $plat)
     {
-        $category = Category::query()->withTrashed()->oldest('name')->paginate(5);
-        $origin = Origin::query()->withTrashed()->oldest('name')->paginate(5);
-        $type =  Type::query()->withTrashed()->oldest('name')->paginate(5);
-        $ingredient = Ingredient::query()->withTrashed()->oldest('name')->paginate(5);
-        $plat = null;
-
-        $data =
-            [
-                'plat' => $plat,
-                'category' => $category,
-                'origin' => $origin,
-                'type' => $type,
-                'ingredient' => $ingredient
-            ];
-
-        return view('dashboard', compact('data'));
-    }
-
-    public function getFoodByIngredient (Request $request, Plat $plat){
-        $ingredient = Ingredient::query()->withTrashed()->oldest('name')->paginate(5);
-        $data = ['ingredient' => $ingredient];
-        $data['plat'] =  $this->postRepository->getFoodByRelation($plat, 5,$request->id,'ingredients','ingredients');
-        dd( $data['plat']);die;
-        return view('dashboard', compact('data'));
+        $ingredient = Ingredient::query()->withTrashed()->oldest('name')->get();
+        $datas['ingredient'] = $ingredient;
+        if ($request->isMethod('post'))
+        {
+          $datas['plat'] =  $this->postRepository->getFoodByRelation($plat, 5,$request->id,'ingredients','ingredients');
+        }
+        return view('dashboard', compact('datas'));
     }
 
 }
