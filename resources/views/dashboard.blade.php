@@ -18,12 +18,12 @@
     <div class="py-12 panelElement">
         <div class="max-w-12xl sm:px-12 lg:px-12">
 
+                <form id="category" action="{{ route('search.ingredients') }}" method="POST">
+                    @csrf
+                    @include('components/select',['datas' => $datas['ingredient'], 'label' => 'Ingrédient','name' => 'id'])
+                    <x-button name="btn-1" type="submit">Chercher</x-button>
+                </form>
 
-            <form id="category" action="{{ route('search.ingredients') }}" method="POST">
-                @csrf
-                @include('components/select',['datas' => $datas['ingredient'], 'label' => 'Ingrédient','name' => 'id'])
-                <x-button name="btn-1" type="submit">Chercher</x-button>
-            </form>
             <br>
             @if(isset($datas['plat']))
                 <table class="table is-hoverable">

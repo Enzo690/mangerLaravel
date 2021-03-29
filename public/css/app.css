@@ -253,6 +253,11 @@ See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d4
 .bg-success{
       background-color: #bdffbd;
 }
+
+.d-flex{
+display:flex;
+}
+
 .adminCreate{
     padding-top:0 !important;
     justify-content : space-between;
