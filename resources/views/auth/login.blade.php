@@ -46,11 +46,15 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
+                &emsp;
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/register" class="ml-4">
+                        {{ __('Register') }}
+                    </a>
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
+
     </x-auth-card>
 </x-guest-layout>
