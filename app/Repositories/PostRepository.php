@@ -36,11 +36,10 @@ class PostRepository
         return back()->with('info',  $text.' a bien été restauré.');
     }
 
-    public function getFoodByIngredient(int $nbrPages, $id, string $method)
+    public function getFoodByRelation(object $plat, int $nbrPages, $id, string $method, string  $relation)
     {
-        return $this->queryActive()->whereHas($method, function($query) use ($id,$method){
-            $query->where('ingredients.id', '=',$id->ingredient_id);
-
+        return $plat::whereHas($method, function($query) use ($id, $method, $relation){
+            $query->where($relation.'.id', '=', $id);
         })->paginate($nbrPages);
     }
 

@@ -38,17 +38,14 @@ class ClientController extends Controller
                 'ingredient' => $ingredient
             ];
 
-
-
         return view('dashboard', compact('data'));
     }
 
-    public function getFoodByIngredient (Request $request){
-
+    public function getFoodByIngredient (Request $request, Plat $plat){
         $ingredient = Ingredient::query()->withTrashed()->oldest('name')->paginate(5);
         $data = ['ingredient' => $ingredient];
-        $data['plat'] =  $this->postRepository->getFoodByIngredient(5,$request,'ingredients');
-        var_dump( $data['plat']);
+        $data['plat'] =  $this->postRepository->getFoodByRelation($plat, 5,$request->id,'ingredients','ingredients');
+        dd( $data['plat']);die;
         return view('dashboard', compact('data'));
     }
 

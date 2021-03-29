@@ -16,7 +16,7 @@ class Origin extends Model
         'name',
     ];
 
-    public function plat()
+    public function plats()
     {
         return $this->hasMany(Plat::class);
     }
